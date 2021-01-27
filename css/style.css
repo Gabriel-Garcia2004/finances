@@ -45,12 +45,14 @@ body {
 .c-content__balance {
     width:100%;
     margin: -10rem auto 0 auto;
+
 }
 .c-content__h2 {
     color: #2d2d2d;
     font-weight: 500;
     font-size: 2em;
 }
+
 .c-content__card {
     background-color: #fff;
     padding: 1.5rem 2rem;
@@ -64,6 +66,19 @@ body {
     color: #2d2d2d;
     font-weight: 400;
     font-size: 1.125em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.u-sr-only{
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border-width: 0;
 }
 .c-content__text{
     color: #2d2d2d;
@@ -85,6 +100,18 @@ body {
 .c-content__transaction{
     width: 100%;
 }
+.c-content__button{
+    text-decoration: none;
+    color:rgb(99, 184, 83) ;
+    font-size: 1.125rem;
+    transition: .3s ease;
+    display: inline-block;
+    padding: 10px;
+}
+.c-content__button:hover{
+    color:rgb(100, 200,100) ;
+
+}
 .c-content__data-table{
     border-spacing: 0 0.5em;
     width: 100%;
@@ -102,7 +129,7 @@ body {
 }
 .c-content__tbody .c-content__tr{
     opacity: .6;
-    transition: .3s;
+    transition: .3s ease;
     font-weight: 500;
 }
 .c-content__tbody .c-content__tr:hover{
@@ -114,7 +141,13 @@ body {
     padding: 1rem 2rem;
     text-align: start;
 }
-
+.c-content__td--img{
+    opacity: .7;
+    transition: .3s ease;
+}
+.c-content__td--img:hover{
+    opacity: 1;
+}
 .u-description{
     color: #2d2d2d;
 }

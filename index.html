@@ -17,22 +17,23 @@
         </header>
          <main class="c-content">
             <section class="c-content__balance">
-                <h2 class="c-content__h2">Balanço</h2>
+                <h2 class="c-content__h2 u-sr-only">Balanço</h2>
                 <div class="c-content__card">
-                    <h3 class="c-content__h3">Entradas</h3>
+                    <h3 class="c-content__h3">Entradas <span><img src="./images/income.svg" alt="Imagem de entrada"></span></h3>
                     <p class="c-content__text">R$ 2.000,00</p>
                 </div>
                 <div class="c-content__card">
-                    <h3 class="c-content__h3">Saída</h3>
+                    <h3 class="c-content__h3">Saída<span><img src="./images/expense.svg" alt="Imagem de saídas"></h3>
                     <p class="c-content__text">R$ -350,00</p>
                 </div>
                 <div class="c-content__card u-bg">
-                    <h3 class="c-content__h3">Total</h3>
+                    <h3 class="c-content__h3">Total<span><img src="./images/total.svg" alt="Imagem de total"></h3>
                     <p class="c-content__text">R$ 1.650,00</p>
                 </div>
             </section>
             <section class="c-content__transaction">
-                <h2 class="c-content__h2">Transações</h2>
+                <h2 class="c-content__h2 u-sr-only">Transações</h2>
+                <a href="#" class="c-content__button js-new-transaction">+ Nova Transação</a>
                 <table class="c-content__data-table">
                    <thead class="c-content__thead">
                     <tr class="c-content__tr">
@@ -40,6 +41,7 @@
                         <th class="c-content__th">Valor</th>
                         <th class="c-content__th">Data de Início</th>
                         <th class="c-content__th">Data de Pagamento</th>
+                        <th class="c-content__th"></th>
                     </tr>
                    </thead> 
                    <tbody class="c-content__tbody">
@@ -48,18 +50,21 @@
                         <td class="c-content__td u-expense">R$ -235,00</td>
                         <td class="c-content__td u-date">05/02/2021</td>
                         <td class="c-content__td u-date">10/02/2021</td>
+                        <td class="c-content__td"><img class="c-content__td--img" src="./images/minus.svg" alt="Remover transação"></td>
                     </tr>
                     <tr class="c-content__tr">
                         <td class="c-content__td u-description">Água</td>
                         <td class="c-content__td u-expense">R$ -115,00</td>
                         <td class="c-content__td u-date">03/02/2021</td>
                         <td class="c-content__td u-date">07/02/2021</td>
+                        <td class="c-content__td"><img class="c-content__td--img" src="./images/minus.svg" alt="Remover transação"></td>
                     </tr>
                     <tr class="c-content__tr">
                         <td class="c-content__td u-description">Criação de website</td>
                         <td class="c-content__td u-income">R$ 2.000,00</td>
                         <td class="c-content__td u-date">01/01/2021</td>
                         <td class="c-content__td u-date">30/01/2021</td>
+                        <td class="c-content__td"><img class="c-content__td--img" src="./images/minus.svg" alt="Remover transação"></td>
                     </tr>
                 </tbody>
                 </table>
