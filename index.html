@@ -1,77 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Finance</title>
-        <link rel="icon" href="./images/logo.png">
-        <link rel="stylesheet" href="./css/style.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@;300;400;500;700&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <header class="c-header">
-            <div class="c-header__container">
-                <h1 class="c-header__title">Finance</h1>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance</title>
+    <link rel="icon" href="./images/logo.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="c-header">
+        <div class="c-header__container">
+            <span class="c-header__span"><img class="c-header__logo" src="./images/logo.png" alt="Finance logo"></span>
+            <h1 class="c-header__title">Finance</h1>
+        </div>
+    </header>
+    <main class="c-content">
+        <section class="c-content__balance">
+            <h2 class="c-content__h2 u-sr-only">Balanço</h2>
+            <div class="c-content__card">
+                <h3 class="c-content__h3">Entradas <span><img src="./images/income.svg" alt="Imagem de entrada"></span>
+                </h3>
+                <p class="c-content__text">R$ 2.000,00</p>
             </div>
-        </header>
-         <main class="c-content">
-            <section class="c-content__balance">
-                <h2 class="c-content__h2 u-sr-only">Balanço</h2>
-                <div class="c-content__card">
-                    <h3 class="c-content__h3">Entradas <span><img src="./images/income.svg" alt="Imagem de entrada"></span></h3>
-                    <p class="c-content__text">R$ 2.000,00</p>
-                </div>
-                <div class="c-content__card">
-                    <h3 class="c-content__h3">Saída<span><img src="./images/expense.svg" alt="Imagem de saídas"></h3>
-                    <p class="c-content__text">R$ -350,00</p>
-                </div>
-                <div class="c-content__card u-bg">
-                    <h3 class="c-content__h3">Total<span><img src="./images/total.svg" alt="Imagem de total"></h3>
-                    <p class="c-content__text">R$ 1.650,00</p>
-                </div>
-            </section>
-            <section class="c-content__transaction">
-                <h2 class="c-content__h2 u-sr-only">Transações</h2>
-                <a href="#" class="c-content__button js-new-transaction">+ Nova Transação</a>
+            <div class="c-content__card">
+                <h3 class="c-content__h3">Saída<span><img src="./images/expense.svg" alt="Imagem de saídas"></h3>
+                <p class="c-content__text">R$ -350,00</p>
+            </div>
+            <div class="c-content__card u-bg">
+                <h3 class="c-content__h3">Total<span><img src="./images/total.svg" alt="Imagem de total"></h3>
+                <p class="c-content__text">R$ 1.650,00</p>
+            </div>
+        </section>
+        <section class="c-content__transaction">
+            <h2 class="c-content__h2 u-sr-only">Transações</h2>
+            <a href="#" class="c-content__button js-new-transaction">+ Nova Transação</a>
+            <div class="c-content__table-container">
                 <table class="c-content__data-table">
-                   <thead class="c-content__thead">
-                    <tr class="c-content__tr">
-                        <th class="c-content__th">Descrição</th>
-                        <th class="c-content__th">Valor</th>
-                        <th class="c-content__th">Data de Início</th>
-                        <th class="c-content__th">Data de Pagamento</th>
-                        <th class="c-content__th"></th>
-                    </tr>
-                   </thead> 
-                   <tbody class="c-content__tbody">
-                    <tr class="c-content__tr">
-                        <td class="c-content__td u-description">Luz</td>
-                        <td class="c-content__td u-expense">R$ -235,00</td>
-                        <td class="c-content__td u-date">05/02/2021</td>
-                        <td class="c-content__td u-date">10/02/2021</td>
-                        <td class="c-content__td"><img class="c-content__td--img" src="./images/minus.svg" alt="Remover transação"></td>
-                    </tr>
-                    <tr class="c-content__tr">
-                        <td class="c-content__td u-description">Água</td>
-                        <td class="c-content__td u-expense">R$ -115,00</td>
-                        <td class="c-content__td u-date">03/02/2021</td>
-                        <td class="c-content__td u-date">07/02/2021</td>
-                        <td class="c-content__td"><img class="c-content__td--img" src="./images/minus.svg" alt="Remover transação"></td>
-                    </tr>
-                    <tr class="c-content__tr">
-                        <td class="c-content__td u-description">Criação de website</td>
-                        <td class="c-content__td u-income">R$ 2.000,00</td>
-                        <td class="c-content__td u-date">01/01/2021</td>
-                        <td class="c-content__td u-date">30/01/2021</td>
-                        <td class="c-content__td"><img class="c-content__td--img" src="./images/minus.svg" alt="Remover transação"></td>
-                    </tr>
-                </tbody>
+                    <thead class="c-content__thead">
+                        <tr class="c-content__tr">
+                            <th class="c-content__th">Descrição</th>
+                            <th class="c-content__th">Valor</th>
+                            <th class="c-content__th">Data de Início</th>
+                            <th class="c-content__th">Data de Pagamento</th>
+                            <th class="c-content__th"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="c-content__tbody">
+                        <tr class="c-content__tr">
+                            <td class="c-content__td u-description">Luz</td>
+                            <td class="c-content__td u-expense">R$ -235,00</td>
+                            <td class="c-content__td u-date">05/02/2021</td>
+                            <td class="c-content__td u-date">10/02/2021</td>
+                            <td class="c-content__td"><a class="c-content__td--link" href="#"><img
+                                        class="c-content__td--img" src="./images/minus.svg" alt="Remover transação"></a>
+                            </td>
+                        </tr>
+                        <tr class="c-content__tr">
+                            <td class="c-content__td u-description">Água</td>
+                            <td class="c-content__td u-expense">R$ -115,00</td>
+                            <td class="c-content__td u-date">03/02/2021</td>
+                            <td class="c-content__td u-date">07/02/2021</td>
+                            <td class="c-content__td"><a class="c-content__td--link" href="#"><img
+                                        class="c-content__td--img" src="./images/minus.svg" alt="Remover transação"></a>
+                            </td>
+                        </tr>
+                        <tr class="c-content__tr">
+                            <td class="c-content__td u-description">Criação de website</td>
+                            <td class="c-content__td u-income">R$ 2.000,00</td>
+                            <td class="c-content__td u-date">01/01/2021</td>
+                            <td class="c-content__td u-date">30/01/2021</td>
+                            <td class="c-content__td"><a class="c-content__td--link" href="#"><img
+                                        class="c-content__td--img" src="./images/minus.svg" alt="Remover transação"></a>
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
-            </section>
-         </main>
-         <footer class="c-footer">
-            <p class="c-footer__text">©<a class="c-footer__link" target="_blank" href="https://github.com/Gabriel-Garcia2004">Gabriel Garcia</a></p>
-         </footer>
-    </body>
-</html>  
+            </div>
+        </section>
+    </main>
+    <aside class="c-modal">
+        <section class="c-modal__container">
+            <h2 class="c-modal_h2">Nova transação</h2>
+            <form class="c-modal__form">
+                <div class="c-modal__item">
+                    <label class="c-modal__label u-sr-only" for="description">Descrição </label>
+                <input class="c-modal__input" type="text" id="description" name="description" placeholder="Descrição">
+                </div>
+                <div class="c-modal__item">
+                    <label class="c-modal__label u-sr-only" for="amount">Valor</label>
+                    <input class="c-modal__input" type="number" id="amount" name="amount" step="0.01" placeholder="R$0,00">
+                    <span class="c-modal__span"><small>Use o sinal - (negativo) para despesas e, (virgula) para casas decimais</small></span>
+                </div>
+                <div class="c-modal__item">
+                    <label class="c-modal__label" for="amount">Data de Início</label>
+                    <input class="c-modal__input" type="date" id="date" name="date"  placeholder="16/01/2021">
+                </div>
+                <div class="c-modal__item">
+                    <label class="c-modal__label" for="amount">Data de Pagamento</label>
+                    <input class="c-modal__input" type="date" id="date" name="date"  placeholder="16/02/2021">
+                </div>
+                <div class="c-modal__buttons">
+                    <a href="#" class="c-modal__cancel-button">Cancelar</a>
+                    <label class="c-modal__label--button" for="save">Salvar</label>
+                    <input class="c-modal__input--submit" type="submit" id="save" name="save">
+                </div>
+            </form>
+        </section>
+    </aside>
+    <footer class="c-footer">
+        <p class="c-footer__text">©<a class="c-footer__link" target="_blank"
+                href="https://github.com/Gabriel-Garcia2004">Gabriel Garcia</a></p>
+    </footer>
+</body>
+
+</html>
