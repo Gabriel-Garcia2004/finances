@@ -82,29 +82,32 @@
             </div>
         </section>
     </main>
-    <aside class="c-modal">
+    <aside class="c-modal" id="modal">
         <section class="c-modal__container">
-            <h2 class="c-modal_h2">Nova transação</h2>
+            <h2 class="c-modal__h2">Nova transação</h2>
             <form class="c-modal__form">
                 <div class="c-modal__item">
                     <label class="c-modal__label u-sr-only" for="description">Descrição </label>
-                <input class="c-modal__input" type="text" id="description" name="description" placeholder="Descrição">
+                    <input class="c-modal__input" type="text" id="description" name="description"
+                        placeholder="Descrição" required>
                 </div>
                 <div class="c-modal__item">
                     <label class="c-modal__label u-sr-only" for="amount">Valor</label>
-                    <input class="c-modal__input" type="number" id="amount" name="amount" step="0.01" placeholder="R$0,00">
-                    <span class="c-modal__span"><small>Use o sinal - (negativo) para despesas e, (virgula) para casas decimais</small></span>
+                    <input class="c-modal__input" type="number" id="amount" name="amount" step="0.01"
+                        placeholder="R$0,00" required>
+                    <span class="c-modal__span">Use o sinal - (negativo) para despesas e, (virgula) para casas
+                        decimais</span>
                 </div>
                 <div class="c-modal__item">
                     <label class="c-modal__label" for="amount">Data de Início</label>
-                    <input class="c-modal__input" type="date" id="date" name="date"  placeholder="16/01/2021">
+                    <input class="c-modal__input" type="date" id="date" name="date" placeholder="16/01/2021" required>
                 </div>
                 <div class="c-modal__item">
                     <label class="c-modal__label" for="amount">Data de Pagamento</label>
-                    <input class="c-modal__input" type="date" id="date" name="date"  placeholder="16/02/2021">
+                    <input class="c-modal__input" type="date" id="date" name="date" placeholder="16/02/2021" required>
                 </div>
                 <div class="c-modal__buttons">
-                    <a href="#" class="c-modal__cancel-button">Cancelar</a>
+                    <a href="#" class="c-modal__cancel-button js-closeModal">Cancelar</a>
                     <label class="c-modal__label--button" for="save">Salvar</label>
                     <input class="c-modal__input--submit" type="submit" id="save" name="save">
                 </div>
@@ -115,6 +118,7 @@
         <p class="c-footer__text">©<a class="c-footer__link" target="_blank"
                 href="https://github.com/Gabriel-Garcia2004">Gabriel Garcia</a></p>
     </footer>
+    <script src="./script/index.js"></script>
 </body>
 
 </html>
