@@ -19,9 +19,10 @@ function startModal() {
 const openModal = document.querySelector(".js-new-transaction");
 openModal.addEventListener("click", startModal); //chama a função que foi criada anteriormente
 
-// Organização dos objetos, esses seram os dados que irão pra tabela
-const transactions = [
-  {
+
+// Entradas, saídas e total
+const Transaction = {
+  all: [{// Organização dos objetos, esses seram os dados que irão pra tabela
     id: 1,
     description: "Conta de Luz",
     amount: -23500,
@@ -41,11 +42,16 @@ const transactions = [
     amount: 220000,
     startDate: "01/02/2021",
     payday: "30/01/2021",
+  }],
+
+  add(transaction) {
+    Transaction.all.push(transaction);
+    App.reload();
   },
-];
-// Entradas, saídas e total
-const Transaction = {
-    all: transactions,
+  remove(index) {
+    Transaction.all.splice(index, 1);
+    App.reload();
+  },
   // Preciso somar as entradas de dinheiro
   incomes() {
     let income = 0; //definindo valor base do income
@@ -105,10 +111,21 @@ const DOM = {
         `; //puxou os dados dos objetos de transactions e está usando para alterar os valores na table
     return html;
   },
+  //seleciona os elementos no html para entrarem os valores finais
   updateBalance() {
-    document.querySelector("#incomeDisplay").innerHTML = Utils.formatCurrency( Transaction.incomes());
-    document.querySelector("#expenseDisplay").innerHTML = Utils.formatCurrency( Transaction.expenses());
-    document.querySelector("#totalDisplay").innerHTML = Utils.formatCurrency(Transaction.total());
+    document.querySelector("#incomeDisplay").innerHTML = Utils.formatCurrency(
+      Transaction.incomes()
+    );
+    document.querySelector("#expenseDisplay").innerHTML = Utils.formatCurrency(
+      Transaction.expenses()
+    );
+    document.querySelector("#totalDisplay").innerHTML = Utils.formatCurrency(
+      Transaction.total()
+    );
+  },
+
+  clearTrasactions() {
+    DOM.transactionsContainer.innerHTML = "";
   },
 };
 
@@ -125,11 +142,19 @@ const Utils = {
     return signal + value;
   },
 };
-/*DOM.addTransaction(transactions[0])//está pegando os dados da const Transactions e mandando pra cima*/
+//Para iniciar e reiniciar todo o script
+const App = {
+  init() {
+    Transaction.all.forEach((transaction) => {//usando o forEach, vou colocar todos os objetos que estão no transactions, no html
+      DOM.addTransaction(transaction);
+    });
+    DOM.updateBalance();
+  },
+  reload() {
+    DOM.clearTrasactions();
+    App.init();
+  },
+};
 
-//usando o forEach, vou colocar todos os objetos que estão no transactions, no html, repetindo a função acima de maneira global
-transactions.forEach((transaction) => {
-  DOM.addTransaction(transaction);
-});
+App.init();
 
-DOM.updateBalance();
