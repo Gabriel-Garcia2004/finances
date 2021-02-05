@@ -1,48 +1,43 @@
 /* Função para abrir o Modal*/
-function startModal() {
-  //Seleciona o elemento que ira ter o Evente 'click"
-  document
-    .querySelector(".js-new-transaction")
-    .addEventListener("click", () => {
-      const close = document.querySelector(".js-closeModal");
-      const modal = document.querySelector(".c-modal");
-      // Cria as constantes para serem usadas na função
-      modal.classList.add("js-is-active"); //adiciona a class, que abre o modal, no modal
-      modal.addEventListener("click", (e) => {
-        //arrow function para fechar o modal
-        if (e.target === modal || e.target === close) {
-          setTimeout(() => modal.classList.remove("js-is-active"), 100); // com uma função setTimeOut para dar um delay de 100ms antes de fechar
-        }
+
+const Modal = {
+  startModal() {
+    //Seleciona o elemento que ira ter o Evente 'click"
+    document
+      .querySelector(".js-new-transaction")
+      .addEventListener("click", () => {
+        const close = document.querySelector(".js-closeModal");
+        const modal = document.querySelector(".c-modal");
+        // Cria as constantes para serem usadas na função
+        modal.classList.add("js-is-active"); //adiciona a class, que abre o modal, no modal
+        modal.addEventListener("click", (e) => {
+          //arrow function para fechar o modal
+          if (e.target === modal || e.target === close) {
+            setTimeout(() => modal.classList.remove("js-is-active"), 100); // com uma função setTimeOut para dar um delay de 100ms antes de fechar
+          }
+        });
       });
-    });
+  },
+  closeModal() {
+    setTimeout(
+      () => document.querySelector(".c-modal").classList.remove("js-is-active"),
+      100
+    );
+  },
+};
+
+const Storage = {
+  get() {
+      return JSON.parse(localStorage.getItem("dev.finances:transactions")) || []
+  },
+
+  set(transactions) {
+      localStorage.setItem("dev.finances:transactions", JSON.stringify(transactions))
+  }
 }
-const openModal = document.querySelector(".js-new-transaction");
-openModal.addEventListener("click", startModal); //chama a função que foi criada anteriormente
-
-
 // Entradas, saídas e total
 const Transaction = {
-  all: [{// Organização dos objetos, esses seram os dados que irão pra tabela
-    id: 1,
-    description: "Conta de Luz",
-    amount: -23500,
-    startDate: "05/02/2021",
-    payday: "10/02/2021",
-  },
-  {
-    id: 2,
-    description: "Conta de água",
-    amount: -11500,
-    startDate: "02/02/2021",
-    payday: "07/02/2021",
-  },
-  {
-    id: 3,
-    description: "Criação de website",
-    amount: 220000,
-    startDate: "01/02/2021",
-    payday: "30/01/2021",
-  }],
+  all: Storage.get(),
 
   add(transaction) {
     Transaction.all.push(transaction);
@@ -88,11 +83,12 @@ const DOM = {
   addTransaction(transaction, index) {
     const tr = document.createElement("tr");
     tr.classList.add("c-content__tr");
-    tr.innerHTML = DOM.innerHTMLTransaction(transaction); // pegou os dados da const transactions e está usando na tag <tr>
+    tr.innerHTML = DOM.innerHTMLTransaction(transaction, index); // pegou os dados da const transactions e está usando na tag <tr>
+    tr.dataset.index = index;
     DOM.transactionsContainer.appendChild(tr);
   },
   // construção do html que vai ser atribuido à tag <tr>
-  innerHTMLTransaction(transaction) {
+  innerHTMLTransaction(transaction, index) {
     //Vai separar as duas class, para saber se teve entrada ou saida de dinheiro, e muda a cor
     const CSSclass = transaction.amount > 0 ? "u-income" : "u-expense";
     //
@@ -102,9 +98,9 @@ const DOM = {
         <tr class="c-content__tr">
             <td class="c-content__td u-description">${transaction.description}</td> 
             <td class="c-content__td ${CSSclass}">${amount}</td>
-            <td class="c-content__td u-date">${transaction.startDate}</td>
+            <td class="c-content__td u-date">${transaction.date}</td>
             <td class="c-content__td u-date">${transaction.payday}</td>
-            <td class="c-content__td"><a class="c-content__td--link" href="#">
+            <td class="c-content__td"><a class="c-content__td--link" href="#" onclick="Transaction.remove(${index})">
                 <img class="c-content__td--img" src="./images/minus.svg" alt="Remover transação"></a>
             </td>
         </tr>
@@ -131,6 +127,19 @@ const DOM = {
 
 // Vai tratar o dinheiro, colocando virgula, "R$" etc...
 const Utils = {
+  formatAmount(value) {
+    value = Number(value.replace(/\,\,/g, "")) * 100;
+    // value = Number(value) * 100;
+    return value;
+  },
+  formatDate(date) {
+    const splittedDate = date.split("-");
+    return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`;
+  },
+  formatPayday(payday) {
+    const splittedDate = payday.split("-");
+    return `${splittedDate[2]}/${splittedDate[1]}/${splittedDate[0]}`;
+  },
   formatCurrency(value) {
     const signal = Number(value) < 0 ? "-" : ""; // Coloca o sinal de negativo se o número for menor que 0, '< 0'
     value = String(value).replace(/\D/g, ""); // tira todos os caracteres especiais
@@ -142,19 +151,90 @@ const Utils = {
     return signal + value;
   },
 };
+const Form = {
+  description: document.querySelector("input#description"),
+  amount: document.querySelector("input#amount"),
+  date: document.querySelector("input#date"),
+  payday: document.querySelector("input#payday"),
+  getValues() {
+    return {
+      description: Form.description.value,
+      amount: Form.amount.value,
+      date: Form.date.value,
+      payday: Form.payday.value,
+    };
+  },
+  validateFields() {
+    const { description, amount, date, payday } = Form.getValues();
+    if (
+      description.trim() === "" ||
+      amount.trim() === "" ||
+      date.trim() === "" ||
+      payday.trim() === ""
+    ) {
+      throw new Error("Por favor, preencha todos os campos");
+    }
+  },
+  formatValues() {
+    let { description, amount, date, payday } = Form.getValues();
+
+    amount = Utils.formatAmount(amount);
+
+    date = Utils.formatDate(date);
+
+    payday = Utils.formatPayday(payday);
+
+    return {
+      description,
+      amount,
+      date,
+      payday,
+    };
+  },
+  saveTransaction(transaction) {
+    Transaction.add(transaction);
+  },
+  clearFields() {
+    (Form.description.value = ""),
+      (Form.amount.value = ""),
+      (Form.date.value = ""),
+      (Form.payday.value = "");
+  },
+  submit(event) {
+    event.preventDefault();
+    try {
+      //verificar se os capos foram todos preenchidos
+      Form.validateFields();
+      //Formatar os dados
+      const transaction = Form.formatValues();
+      //salvar os dados formatados
+      Form.saveTransaction(transaction);
+      //limpar os inputs
+      Form.clearFields();
+      //fechar o modal
+      Modal.closeModal();
+    } catch (error) {
+      alert(error.message);
+    }
+  },
+};
+
 //Para iniciar e reiniciar todo o script
 const App = {
   init() {
-    Transaction.all.forEach((transaction) => {//usando o forEach, vou colocar todos os objetos que estão no transactions, no html
-      DOM.addTransaction(transaction);
+    Transaction.all.forEach((transaction, index) => {
+      //usando o forEach, vou colocar todos os objetos que estão no transactions, no html
+      DOM.addTransaction(transaction, index);
     });
     DOM.updateBalance();
+
+    Storage.set(Transaction.all)
   },
   reload() {
     DOM.clearTrasactions();
     App.init();
   },
 };
+Modal.startModal();
 
 App.init();
-

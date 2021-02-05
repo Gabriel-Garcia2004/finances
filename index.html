@@ -24,15 +24,15 @@
             <div class="c-content__card">
                 <h3 class="c-content__h3">Entradas <span><img src="./images/income.svg" alt="Imagem de entrada"></span>
                 </h3>
-                <p class="c-content__text" id="incomeDisplay">R$ 2.000,00</p>
+                <p class="c-content__text" id="incomeDisplay">R$ 0,00</p>
             </div>
             <div class="c-content__card">
                 <h3 class="c-content__h3">Saída<span><img src="./images/expense.svg" alt="Imagem de saídas"></h3>
-                <p class="c-content__text" id="expenseDisplay">R$ -350,00</p>
+                <p class="c-content__text" id="expenseDisplay">R$ 0,00</p>
             </div>
             <div class="c-content__card u-bg">
                 <h3 class="c-content__h3">Total<span><img src="./images/total.svg" alt="Imagem de total"></h3>
-                <p class="c-content__text" id="totalDisplay">R$ 1.650,00</p>
+                <p class="c-content__text" id="totalDisplay">R$ 0,00</p>
             </div>
         </section>
         <section class="c-content__transaction">
@@ -58,7 +58,7 @@
     <aside class="c-modal" id="modal">
         <section class="c-modal__container">
             <h2 class="c-modal__h2">Nova transação</h2>
-            <form class="c-modal__form">
+            <form class="c-modal__form" onsubmit="Form.submit(event)">
                 <div class="c-modal__item">
                     <label class="c-modal__label u-sr-only" for="description">Descrição </label>
                     <input class="c-modal__input" type="text" id="description" name="description"
@@ -76,13 +76,13 @@
                     <input class="c-modal__input" type="date" id="date" name="date" placeholder="16/01/2021" required>
                 </div>
                 <div class="c-modal__item">
-                    <label class="c-modal__label" for="amount">Data de Pagamento</label>
-                    <input class="c-modal__input" type="date" id="date" name="date" placeholder="16/02/2021" required>
+                    <label class="c-modal__label" for="payday">Data de Pagamento</label>
+                    <input class="c-modal__input" type="date" id="payday" name="payday" placeholder="16/02/2021" required>
                 </div>
                 <div class="c-modal__buttons">
                     <a href="#" class="c-modal__cancel-button js-closeModal">Cancelar</a>
-                    <label class="c-modal__label--button" for="save">Salvar</label>
-                    <input class="c-modal__input--submit" type="submit" id="save" name="save">
+                    <label class="c-modal__label--button" for="save" >Salvar</label>
+                    <input class="c-modal__input--submit " type="submit" id="save" name="save">
                 </div>
             </form>
         </section>
